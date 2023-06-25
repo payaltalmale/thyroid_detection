@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Thyroid Disease Detection</title>
+  <style>
+    body {
+      background-color: indigo;
+    }
+    h1, h3, h6,label {
+      color: whitesmoke;
+    }
+    form {
+      margin-top: 20px;
+      text-align: center;
+    }
+    input[type="number"] {
+      font-size: 16pt;
+      margin-bottom: 10px;
+      padding: 5px;
+    }
+    button {
+      font-size: 16pt;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .prediction {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 16pt;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <center>
+    <h1>Thyroid Disease Detection</h1>
+    <img src="https://cdn.pixabay.com/photo/2016/05/18/22/28/thyroid-1401768__340.png" alt="Thyroid Image">
+    <h6>Image Source: Pixabay.com</h6>
+    <h3>Enter the below fields, and our model will predict whether you have thyroidal disease.</h3>
+
+    <form action="{{ url_for('predict') }}" method="POST">
+      <label for="fti">FTI value:</label><br>
+      <input type="number" name="fti" required step="any"><br>
+
+      <label for="tsh">TSH value:</label><br>
+      <input type="number" name="tsh" required step="any"><br>
+
+      <label for="tt4">TT4 value:</label><br>
+      <input type="number" name="tt4" required><br>
+
+      <label for="pregnant_t">Pregnant_t value:</label><br>
+      <input type="number" name="pregnant_t" required step="any"><br>
+
+      <button type="submit">Predict</button>
+    </form>
+
+    <div class="prediction">
+      {% if predict %}
+        {{ predict }}
+      {% endif %}
+    </div>
+  </center>
+</body>
+</html>
+
+
